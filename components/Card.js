@@ -7,7 +7,7 @@
 
 import React from 'react';
 
-let Card = () => {
+let Card = (props) => {
   let hello = 'This is a card';
   return (
     <div className='card'>

@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import List from './components/List';
+import Board from './components/Board';
 
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     ReactDOM.render(<Board />, document.getElementById('app'));
 });

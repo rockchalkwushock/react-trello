@@ -10,7 +10,7 @@ import React from 'react';
 
 let Button = (props) => {
   return (
-    <button onClick={props.onClick}>Add Card</button>;
+    <button onClick={props.onClick}>Add Card</button>
   );
 };
 

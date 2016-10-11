@@ -54,43 +54,14 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
+	var _Board = __webpack_require__(172);
+	
+	var _Board2 = _interopRequireDefault(_Board);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	// Card Component
-	var Card = function Card() {
-	  var hello = 'This is a card';
-	  return _react2.default.createElement(
-	    'div',
-	    { className: 'card' },
-	    hello
-	  );
-	};
-	
-	// List Component
-	var List = function List() {
-	  return _react2.default.createElement(
-	    'div',
-	    { className: 'list' },
-	    _react2.default.createElement(Card, null),
-	    _react2.default.createElement(Card, null),
-	    _react2.default.createElement(Card, null)
-	  );
-	};
-	
-	// Board Component
-	var Board = function Board() {
-	  return _react2.default.createElement(
-	    'div',
-	    { className: 'board' },
-	    _react2.default.createElement(List, null),
-	    _react2.default.createElement(List, null),
-	    _react2.default.createElement(List, null)
-	  );
-	};
-	
 	document.addEventListener('DOMContentLoaded', function () {
-	  // ReactDOM.render(what, where);
-	  _reactDom2.default.render(_react2.default.createElement(Board, null), document.getElementById('app'));
+	    _reactDom2.default.render(_react2.default.createElement(_Board2.default, null), document.getElementById('app'));
 	});
 
 /***/ },
@@ -21459,6 +21430,217 @@
 	
 	module.exports = ReactDOMNullInputValuePropHook;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 172 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _List = __webpack_require__(173);
+	
+	var _List2 = _interopRequireDefault(_List);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	// import ListContainer from './ListContainer';
+	
+	/*
+	  This is the Board component.
+	  This is a stateless component.
+	*/
+	
+	var Board = function Board() {
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'list' },
+	    _react2.default.createElement(_List2.default, null)
+	  );
+	};
+	
+	exports.default = Board;
+
+/***/ },
+/* 173 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _Card = __webpack_require__(174);
+	
+	var _Card2 = _interopRequireDefault(_Card);
+	
+	var _Button = __webpack_require__(175);
+	
+	var _Button2 = _interopRequireDefault(_Button);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	// Initializing List as a stateful React Component.
+	var List = function (_React$Component) {
+	  _inherits(List, _React$Component);
+	
+	  function List(props) {
+	    _classCallCheck(this, List);
+	
+	    // this.state = getInitialState()
+	    var _this = _possibleConstructorReturn(this, (List.__proto__ || Object.getPrototypeOf(List)).call(this, props));
+	
+	    _this.state = {
+	      text: '',
+	      cards: [],
+	      list: ['List 1']
+	    };
+	    _this.onAddInputChange = _this.onAddInputChange.bind(_this);
+	    _this.onAddSubmit = _this.onAddSubmit.bind(_this);
+	    return _this;
+	  }
+	
+	  //-------------------------------
+	  // Methods attached to List Class
+	  //-------------------------------
+	
+	  _createClass(List, [{
+	    key: 'onAddInputChange',
+	    value: function onAddInputChange(event) {
+	      console.log("Typed in input box.");
+	      this.setState({
+	        text: event.target.value // text will be taken into Card Component.
+	      });
+	    }
+	  }, {
+	    key: 'onAddSubmit',
+	    value: function onAddSubmit(event) {
+	      event.preventDefault();
+	      console.log("Call to add new card.");
+	      var card = [this.state.text];
+	      this.setState({
+	        text: '',
+	        cards: this.state.cards.concat(card)
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var cardsList = [];
+	      for (var i = 0; i < this.state.cards.length; i++) {
+	        cardsList.push(_react2.default.createElement(_Card2.default, { title: this.state.cards[i], key: i }));
+	      }
+	      return _react2.default.createElement(
+	        'form',
+	        { onSubmit: this.onAddSubmit },
+	        _react2.default.createElement('input', { onChange: this.onAddInputChange }),
+	        _react2.default.createElement(
+	          'button',
+	          { type: 'submit' },
+	          'Click Here'
+	        ),
+	        cardsList
+	      );
+	    }
+	  }]);
+	
+	  return List;
+	}(_react2.default.Component);
+	
+	exports.default = List;
+
+/***/ },
+/* 174 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Card = function Card(props) {
+	  var hello = 'This is a card';
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'card' },
+	    _react2.default.createElement(
+	      'p',
+	      null,
+	      props.title
+	    ),
+	    _react2.default.createElement(
+	      'p',
+	      null,
+	      props.content
+	    )
+	  );
+	}; /*
+	     This is the Card component.
+	     This is a stateless component.
+	     Data is passed to it through 'props'.
+	     Data is passed from the Parent Component: List.
+	   */
+	
+	exports.default = Card;
+
+/***/ },
+/* 175 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Button = function Button(props) {
+	  return _react2.default.createElement(
+	    'button',
+	    { onClick: props.onClick },
+	    'Add Card'
+	  );
+	}; /*
+	     This is the Button component.
+	     This is a stateless component.
+	     Data is passed to it through 'props'.
+	     Data is passed from the Parent Component: List.
+	     Button is controlled by the event: onClick.
+	   */
+	
+	exports.default = Button;
 
 /***/ }
 /******/ ]);

@@ -13,6 +13,8 @@ class List extends React.Component {
       cards: [],
       list: ['List 1']
     };
+    this.onAddInputChange = this.onAddInputChange.bind(this);
+    this.onAddSubmit = this.onAddSubmit.bind(this);
   }
 
   //-------------------------------
@@ -37,8 +39,16 @@ class List extends React.Component {
   }
 
   render () {
+    let cardsList = [];
+    for (var i = 0; i < this.state.cards.length; i++) {
+      cardsList.push(<Card title={this.state.cards[i]} key={i}/>);
+    }
     return (
-
+      <form onSubmit={this.onAddSubmit}>
+        <input onChange={this.onAddInputChange}></input>
+        <button type='submit'>Click Here</button>
+        {cardsList}
+      </form>
     );
   }
 }
