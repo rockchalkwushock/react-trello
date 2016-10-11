@@ -6,7 +6,6 @@
   Button is controlled by the event: onClick.
 */
 
-
 import React from 'react';
 
 let Button = (props) => {
