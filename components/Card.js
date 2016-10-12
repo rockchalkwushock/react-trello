@@ -7,14 +7,11 @@
 
 import React from 'react';
 
-let Card = (props) => {
-  let hello = 'This is a card';
-  return (
+const Card = (props) =>
     <div className='card'>
       <p>{props.title}</p>
       <p>{props.content}</p>
     </div>
-  );
-};
+
 
 export default Card;

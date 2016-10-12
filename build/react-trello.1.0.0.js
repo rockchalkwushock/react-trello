@@ -21586,7 +21586,6 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var Card = function Card(props) {
-	  var hello = 'This is a card';
 	  return _react2.default.createElement(
 	    'div',
 	    { className: 'card' },
@@ -21627,7 +21626,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var Button = function Button(props) {
-	  return _react2.default.createElement(
+	  _react2.default.createElement(
 	    'button',
 	    { onClick: props.onClick },
 	    'Add Card'
