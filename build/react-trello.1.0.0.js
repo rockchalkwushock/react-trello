@@ -21445,13 +21445,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _List = __webpack_require__(173);
+	var _ListContainer = __webpack_require__(173);
 	
-	var _List2 = _interopRequireDefault(_List);
+	var _ListContainer2 = _interopRequireDefault(_ListContainer);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	// import ListContainer from './ListContainer';
 	
 	/*
 	  This is the Board component.
@@ -21462,10 +21460,10 @@
 	  return _react2.default.createElement(
 	    'div',
 	    { className: 'list' },
-	    _react2.default.createElement(_List2.default, null)
+	    _react2.default.createElement(_ListContainer2.default, null)
 	  );
 	};
-	
+	// import List from './List';
 	exports.default = Board;
 
 /***/ },
@@ -21475,7 +21473,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	    value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -21484,13 +21482,9 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Card = __webpack_require__(174);
+	var _List = __webpack_require__(174);
 	
-	var _Card2 = _interopRequireDefault(_Card);
-	
-	var _Button = __webpack_require__(175);
-	
-	var _Button2 = _interopRequireDefault(_Button);
+	var _List2 = _interopRequireDefault(_List);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -21500,77 +21494,152 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
+	// Initializing ListContainer as a stateful React Component.
+	var ListContainer = function (_React$Component) {
+	    _inherits(ListContainer, _React$Component);
+	
+	    function ListContainer(props) {
+	        _classCallCheck(this, ListContainer);
+	
+	        var _this = _possibleConstructorReturn(this, (ListContainer.__proto__ || Object.getPrototypeOf(ListContainer)).call(this, props));
+	
+	        _this.state = {
+	            text: '',
+	            list: []
+	        };
+	        _this.onAddInputChanged = _this.onAddInputChanged.bind(_this);
+	        _this.onAddSubmited = _this.onAddSubmited.bind(_this);
+	        return _this;
+	    }
+	
+	    _createClass(ListContainer, [{
+	        key: 'onAddInputChanged',
+	        value: function onAddInputChanged(event) {
+	            this.setState({
+	                // update the text property of the state.
+	            });
+	        }
+	    }, {
+	        key: 'onAddSubmited',
+	        value: function onAddSubmited(event) {
+	            event.preventDefault();
+	            this.setState({
+	                // add the contents of the text property of state to the array of cards in state.
+	            });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            // must pass array of cards from state as 'cards' prop
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(_List2.default, null)
+	            );
+	        }
+	    }]);
+	
+	    return ListContainer;
+	}(_react2.default.Component);
+	
+	exports.default = ListContainer;
+
+/***/ },
+/* 174 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _Card = __webpack_require__(175);
+	
+	var _Card2 = _interopRequireDefault(_Card);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	// import Button from './Button';
+	
 	// Initializing List as a stateful React Component.
 	var List = function (_React$Component) {
-	  _inherits(List, _React$Component);
+	    _inherits(List, _React$Component);
 	
-	  function List(props) {
-	    _classCallCheck(this, List);
+	    function List(props) {
+	        _classCallCheck(this, List);
 	
-	    // this.state = getInitialState()
-	    var _this = _possibleConstructorReturn(this, (List.__proto__ || Object.getPrototypeOf(List)).call(this, props));
+	        // this.state = getInitialState()
+	        var _this = _possibleConstructorReturn(this, (List.__proto__ || Object.getPrototypeOf(List)).call(this, props));
 	
-	    _this.state = {
-	      text: '',
-	      cards: [],
-	      list: ['List 1']
-	    };
-	    _this.onAddInputChange = _this.onAddInputChange.bind(_this);
-	    _this.onAddSubmit = _this.onAddSubmit.bind(_this);
-	    return _this;
-	  }
-	
-	  //-------------------------------
-	  // Methods attached to List Class
-	  //-------------------------------
-	
-	  _createClass(List, [{
-	    key: 'onAddInputChange',
-	    value: function onAddInputChange(event) {
-	      console.log("Typed in input box.");
-	      this.setState({
-	        text: event.target.value // text will be taken into Card Component.
-	      });
+	        _this.state = {
+	            text: '',
+	            cards: [],
+	            list: ['List 1']
+	        };
+	        _this.onAddInputChange = _this.onAddInputChange.bind(_this);
+	        _this.onAddSubmit = _this.onAddSubmit.bind(_this);
+	        return _this;
 	    }
-	  }, {
-	    key: 'onAddSubmit',
-	    value: function onAddSubmit(event) {
-	      event.preventDefault();
-	      console.log("Call to add new card.");
-	      var card = [this.state.text];
-	      this.setState({
-	        text: '',
-	        cards: this.state.cards.concat(card)
-	      });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var cardsList = [];
-	      for (var i = 0; i < this.state.cards.length; i++) {
-	        cardsList.push(_react2.default.createElement(_Card2.default, { title: this.state.cards[i], key: i }));
-	      }
-	      return _react2.default.createElement(
-	        'form',
-	        { onSubmit: this.onAddSubmit },
-	        _react2.default.createElement('input', { onChange: this.onAddInputChange }),
-	        _react2.default.createElement(
-	          'button',
-	          { type: 'submit' },
-	          'Click Here'
-	        ),
-	        cardsList
-	      );
-	    }
-	  }]);
 	
-	  return List;
+	    //-------------------------------
+	    // Methods attached to List Class
+	    //-------------------------------
+	
+	    _createClass(List, [{
+	        key: 'onAddInputChange',
+	        value: function onAddInputChange(event) {
+	            this.setState({
+	                text: event.target.value // text will be taken into Card Component.
+	            });
+	        }
+	    }, {
+	        key: 'onAddSubmit',
+	        value: function onAddSubmit(event) {
+	            event.preventDefault();
+	            var card = [this.state.text];
+	            this.setState({ text: '', cards: this.state.cards.concat(card) });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var cardsList = [];
+	            for (var i = 0; i < this.state.cards.length; i++) {
+	                cardsList.push(_react2.default.createElement(_Card2.default, { title: this.state.cards[i], key: i }));
+	            }
+	            return _react2.default.createElement(
+	                'form',
+	                { onSubmit: this.onAddSubmit },
+	                _react2.default.createElement('input', { onChange: this.onAddInputChange }),
+	                _react2.default.createElement(
+	                    'button',
+	                    { type: 'submit' },
+	                    'Click Here'
+	                ),
+	                cardsList
+	            );
+	        }
+	    }]);
+	
+	    return List;
 	}(_react2.default.Component);
 	
 	exports.default = List;
 
 /***/ },
-/* 174 */
+/* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21608,38 +21677,6 @@
 	   */
 	
 	exports.default = Card;
-
-/***/ },
-/* 175 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var Button = function Button(props) {
-	  _react2.default.createElement(
-	    'button',
-	    { onClick: props.onClick },
-	    'Add Card'
-	  );
-	}; /*
-	     This is the Button component.
-	     This is a stateless component.
-	     Data is passed to it through 'props'.
-	     Data is passed from the Parent Component: List.
-	     Button is controlled by the event: onClick.
-	   */
-	
-	exports.default = Button;
 
 /***/ }
 /******/ ]);

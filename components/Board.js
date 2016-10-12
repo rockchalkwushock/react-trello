@@ -4,13 +4,13 @@
 */
 
 import React from 'react';
-import List from './List';
-// import ListContainer from './ListContainer';
+// import List from './List';
+import ListContainer from './ListContainer';
 
 let Board = () => {
   return (
     <div className='list'>
-      <List />
+      <ListContainer />
     </div>
   );
 };

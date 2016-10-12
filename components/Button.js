@@ -8,8 +8,7 @@
 
 import React from 'react';
 
-const Button = (props) => {
+const Button = (props) =>
     <button onClick={props.onClick}>Add Card</button>
-};
 
 export default Button;
