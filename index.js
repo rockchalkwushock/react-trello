@@ -4,5 +4,6 @@ import Board from './components/Board';
 
 document.addEventListener('DOMContentLoaded', () => {
     ReactDOM.render(
-        <Board/>, document.getElementById('app'));
+        <Board title='Board Title'/>,
+        document.getElementById('app'));
 });

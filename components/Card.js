@@ -7,11 +7,10 @@
 
 import React from 'react';
 
-const Card = (props) =>
+const Card = (props) => (
     <div className='card'>
-      <p>{props.title}</p>
-      <p>{props.content}</p>
+      <div className='card-text'>{props.title}</div>
     </div>
-
+);
 
 export default Card;

@@ -4,13 +4,17 @@
 */
 
 import React from 'react';
-// import List from './List';
 import ListContainer from './ListContainer';
 
-let Board = () => {
+let Board = (props) => {
+  let listTitles = [];
+  for (var i = 0; i < 1; i++) {
+    listTitles.push(<ListContainer key={i} />)
+  }
   return (
-    <div className='list'>
-      <ListContainer />
+    <div className='board'>
+      <div className='board-title'>{props.title}</div>
+      <div className='board-lists'>{listTitles}</div>
     </div>
   );
 };

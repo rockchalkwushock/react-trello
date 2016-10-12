@@ -10,28 +10,24 @@ class ListContainer extends React.Component {
             list: []
         };
         this.onAddInputChanged = this.onAddInputChanged.bind(this);
-        this.onAddSubmited = this.onAddSubmited.bind(this);
+        this.addSubmit = this.addSubmit.bind(this);
     }
 
-    onAddInputChanged(event) {
+    onAddInputChanged (text) {
         this.setState({
-            // update the text property of the state.
+            text: text
         });
     }
 
-    onAddSubmited(event) {
-        event.preventDefault();
+    addSubmit () {
         this.setState({
-            // add the contents of the text property of state to the array of cards in state.
+            list: this.state.list.concat(this.state.text)
         });
     }
+
     render() {
-        // must pass array of cards from state as 'cards' prop
-        return (
-            <div><List/></div>
-        );
-
-    }
+        return <List cards={this.state.list} callback={this.addSubmit} onChange={this.onAddInputChanged}/>
+      }
 }
 
 export default ListContainer;

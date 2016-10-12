@@ -61,7 +61,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	document.addEventListener('DOMContentLoaded', function () {
-	    _reactDom2.default.render(_react2.default.createElement(_Board2.default, null), document.getElementById('app'));
+	    _reactDom2.default.render(_react2.default.createElement(_Board2.default, { title: 'Board Title' }), document.getElementById('app'));
 	});
 
 /***/ },
@@ -21456,14 +21456,27 @@
 	  This is a stateless component.
 	*/
 	
-	var Board = function Board() {
+	var Board = function Board(props) {
+	  var listTitles = [];
+	  for (var i = 0; i < 1; i++) {
+	    listTitles.push(_react2.default.createElement(_ListContainer2.default, { key: i }));
+	  }
 	  return _react2.default.createElement(
 	    'div',
-	    { className: 'list' },
-	    _react2.default.createElement(_ListContainer2.default, null)
+	    { className: 'board' },
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'board-title' },
+	      props.title
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'board-lists' },
+	      listTitles
+	    )
 	  );
 	};
-	// import List from './List';
+	
 	exports.default = Board;
 
 /***/ },
@@ -21508,34 +21521,28 @@
 	            list: []
 	        };
 	        _this.onAddInputChanged = _this.onAddInputChanged.bind(_this);
-	        _this.onAddSubmited = _this.onAddSubmited.bind(_this);
+	        _this.addSubmit = _this.addSubmit.bind(_this);
 	        return _this;
 	    }
 	
 	    _createClass(ListContainer, [{
 	        key: 'onAddInputChanged',
-	        value: function onAddInputChanged(event) {
+	        value: function onAddInputChanged(text) {
 	            this.setState({
-	                // update the text property of the state.
+	                text: text
 	            });
 	        }
 	    }, {
-	        key: 'onAddSubmited',
-	        value: function onAddSubmited(event) {
-	            event.preventDefault();
+	        key: 'addSubmit',
+	        value: function addSubmit() {
 	            this.setState({
-	                // add the contents of the text property of state to the array of cards in state.
+	                list: this.state.list.concat(this.state.text)
 	            });
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            // must pass array of cards from state as 'cards' prop
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(_List2.default, null)
-	            );
+	            return _react2.default.createElement(_List2.default, { cards: this.state.list, callback: this.addSubmit, onChange: this.onAddInputChanged });
 	        }
 	    }]);
 	
@@ -21551,7 +21558,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -21572,68 +21579,67 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	// import Button from './Button';
-	
 	// Initializing List as a stateful React Component.
 	var List = function (_React$Component) {
-	    _inherits(List, _React$Component);
+	  _inherits(List, _React$Component);
 	
-	    function List(props) {
-	        _classCallCheck(this, List);
+	  function List() {
+	    _classCallCheck(this, List);
 	
-	        // this.state = getInitialState()
-	        var _this = _possibleConstructorReturn(this, (List.__proto__ || Object.getPrototypeOf(List)).call(this, props));
+	    return _possibleConstructorReturn(this, (List.__proto__ || Object.getPrototypeOf(List)).apply(this, arguments));
+	  }
 	
-	        _this.state = {
-	            text: '',
-	            cards: [],
-	            list: ['List 1']
-	        };
-	        _this.onAddInputChange = _this.onAddInputChange.bind(_this);
-	        _this.onAddSubmit = _this.onAddSubmit.bind(_this);
-	        return _this;
+	  _createClass(List, [{
+	    key: 'onAddSubmit',
+	    value: function onAddSubmit(event) {
+	      event.preventDefault();
+	      this.props.callback(); // this is how I can pass data up to the parent.
+	      event.target.value = '';
 	    }
+	  }, {
+	    key: 'onChange',
+	    value: function onChange(event) {
+	      event.preventDefault();
+	      console.log(event.target.value);
+	      this.props.onchange(event.target.value);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var listCards = [];
+	      var propsCards = this.props.cards;
+	      var propsTitle = this.props.title;
+	      for (var i = 0; i < propsCards.length; i++) {
+	        listCards.push(_react2.default.createElement(_Card2.default, { key: i, text: propsCards[i] }));
+	      }
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'cardList' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'list-title' },
+	          propsTitle
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'list-cards' },
+	          listCards
+	        ),
+	        _react2.default.createElement(
+	          'form',
+	          { onSubmit: this.onAddSubmit },
+	          _react2.default.createElement('input', { type: 'text', onChange: this.onChange, placeholder: 'Enter Text Here' }),
+	          _react2.default.createElement(
+	            'button',
+	            { type: 'submit' },
+	            'Submit'
+	          )
+	        )
+	      );
+	    }
+	  }]);
 	
-	    //-------------------------------
-	    // Methods attached to List Class
-	    //-------------------------------
-	
-	    _createClass(List, [{
-	        key: 'onAddInputChange',
-	        value: function onAddInputChange(event) {
-	            this.setState({
-	                text: event.target.value // text will be taken into Card Component.
-	            });
-	        }
-	    }, {
-	        key: 'onAddSubmit',
-	        value: function onAddSubmit(event) {
-	            event.preventDefault();
-	            var card = [this.state.text];
-	            this.setState({ text: '', cards: this.state.cards.concat(card) });
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            var cardsList = [];
-	            for (var i = 0; i < this.state.cards.length; i++) {
-	                cardsList.push(_react2.default.createElement(_Card2.default, { title: this.state.cards[i], key: i }));
-	            }
-	            return _react2.default.createElement(
-	                'form',
-	                { onSubmit: this.onAddSubmit },
-	                _react2.default.createElement('input', { onChange: this.onAddInputChange }),
-	                _react2.default.createElement(
-	                    'button',
-	                    { type: 'submit' },
-	                    'Click Here'
-	                ),
-	                cardsList
-	            );
-	        }
-	    }]);
-	
-	    return List;
+	  return List;
 	}(_react2.default.Component);
 	
 	exports.default = List;
@@ -21659,14 +21665,9 @@
 	    'div',
 	    { className: 'card' },
 	    _react2.default.createElement(
-	      'p',
-	      null,
+	      'div',
+	      { className: 'card-text' },
 	      props.title
-	    ),
-	    _react2.default.createElement(
-	      'p',
-	      null,
-	      props.content
 	    )
 	  );
 	}; /*
