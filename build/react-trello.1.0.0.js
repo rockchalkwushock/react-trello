@@ -21520,17 +21520,16 @@
 	            text: '',
 	            list: []
 	        };
-	        _this.onAddInputChanged = _this.onAddInputChanged.bind(_this);
-	        _this.addSubmit = _this.addSubmit.bind(_this);
+	        // this.onAddInputChanged = this.onAddInputChanged.bind(this);
+	        // this.addSubmit = this.addSubmit.bind(this);
 	        return _this;
 	    }
 	
 	    _createClass(ListContainer, [{
 	        key: 'onAddInputChanged',
 	        value: function onAddInputChanged(text) {
-	            this.setState({
-	                text: text
-	            });
+	            this.setState({ text: text }); // because `text` is being passed in we an just
+	            // say `text` instead of `text: text`. (ES6 feature)
 	        }
 	    }, {
 	        key: 'addSubmit',
@@ -21542,7 +21541,7 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            return _react2.default.createElement(_List2.default, { cards: this.state.list, callback: this.addSubmit, onChange: this.onAddInputChanged });
+	            return _react2.default.createElement(_List2.default, { cards: this.state.list, callback: this.addSubmit.bind(this), onChange: this.onAddInputChanged.bind(this) });
 	        }
 	    }]);
 	
@@ -21601,7 +21600,7 @@
 	    value: function onChange(event) {
 	      event.preventDefault();
 	      console.log(event.target.value);
-	      this.props.onchange(event.target.value);
+	      this.props.onChange(event.target.value);
 	    }
 	  }, {
 	    key: 'render',
@@ -21627,8 +21626,8 @@
 	        ),
 	        _react2.default.createElement(
 	          'form',
-	          { onSubmit: this.onAddSubmit },
-	          _react2.default.createElement('input', { type: 'text', onChange: this.onChange, placeholder: 'Enter Text Here' }),
+	          { onSubmit: this.onAddSubmit.bind(this) },
+	          _react2.default.createElement('input', { type: 'text', onChange: this.onChange.bind(this), placeholder: 'Enter Text Here' }),
 	          _react2.default.createElement(
 	            'button',
 	            { type: 'submit' },

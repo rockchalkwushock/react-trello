@@ -12,7 +12,7 @@ class List extends React.Component {
   onChange (event) {
     event.preventDefault();
     console.log(event.target.value);
-    this.props.onchange(event.target.value);
+    this.props.onChange(event.target.value);
   }
 
   render () {
@@ -26,8 +26,8 @@ class List extends React.Component {
       <div className='cardList'>
         <div className='list-title'>{propsTitle}</div>
         <div className='list-cards'>{listCards}</div>
-        <form onSubmit={this.onAddSubmit}>
-          <input type='text' onChange={this.onChange} placeholder='Enter Text Here'/>
+        <form onSubmit={this.onAddSubmit.bind(this)}>
+          <input type='text' onChange={this.onChange.bind(this)} placeholder='Enter Text Here'/>
           <button type='submit'>Submit</button>
         </form>
       </div>

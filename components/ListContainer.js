@@ -9,14 +9,13 @@ class ListContainer extends React.Component {
             text: '',
             list: []
         };
-        this.onAddInputChanged = this.onAddInputChanged.bind(this);
-        this.addSubmit = this.addSubmit.bind(this);
+        // this.onAddInputChanged = this.onAddInputChanged.bind(this);
+        // this.addSubmit = this.addSubmit.bind(this);
     }
 
     onAddInputChanged (text) {
-        this.setState({
-            text: text
-        });
+        this.setState({text}); // because `text` is being passed in we an just
+        // say `text` instead of `text: text`. (ES6 feature)
     }
 
     addSubmit () {
@@ -26,7 +25,7 @@ class ListContainer extends React.Component {
     }
 
     render() {
-        return <List cards={this.state.list} callback={this.addSubmit} onChange={this.onAddInputChanged}/>
+        return <List cards={this.state.list} callback={this.addSubmit.bind(this)} onChange={this.onAddInputChanged.bind(this)}/>
       }
 }
 
