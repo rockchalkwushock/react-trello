@@ -6,6 +6,7 @@ class List extends React.Component {
   onAddSubmit (event) {
     event.preventDefault();
     this.props.callback();  // this is how I can pass data up to the parent.
+    console.log(event.target.value);
     event.target.value = '';
   }
 
@@ -19,8 +20,9 @@ class List extends React.Component {
     let listCards = [];
     let propsCards = this.props.cards;
     let propsTitle = this.props.title;
+    console.log(propsCards);
     for (var i = 0; i < propsCards.length; i++) {
-      listCards.push(<Card key={i} text={propsCards[i]} />)
+      listCards.push(<Card key={i} title={propsCards[i]} />)
     }
     return (
       <div className='cardList'>
