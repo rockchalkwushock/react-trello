@@ -4,7 +4,7 @@ import packageData from './package.json';
 
 let filename = [packageData.name, packageData.version, 'js'];
 
-module.exports = {
+export default {
     entry: path.resolve(__dirname, packageData.main),
     output: {
         path: path.resolve(__dirname, 'build'),

@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "webpack-dev-server --content-base build --inline --hot",
     "test": "mocha --compilers js:babel-register test/**/*.js*",
     "mkdir": "mkdir -p build",
     "build": "npm run clean && npm run mkdir && npm run build:html && npm run build:js",
@@ -47,6 +48,7 @@
     "chokidar-cli": "^1.2.0",
     "mocha": "^3.1.2",
     "react-addons-test-utils": "^15.3.2",
-    "webpack": "^1.13.2"
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.16.2"
   }
 }
