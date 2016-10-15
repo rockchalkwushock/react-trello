@@ -9,7 +9,7 @@ import React from 'react';
 
 const Card = (props) => (
     <div className='card'>
-      <div className='card-text'>{props.title}</div>
+      <p>{props.title}</p>
     </div>
 );
 
